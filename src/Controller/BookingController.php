@@ -47,14 +47,14 @@ class BookingController extends AbstractController
     {
         $requestData = json_decode($request->getContent());
 
-        $registerBookingCommand = new RegisterNewBooking(
+        $registerNewBooking = new RegisterNewBooking(
             $requestData->customer,
             $requestData->room,
             new \DateTime($requestData->checkin),
             new \DateTime($requestData->checkout)
         );
 
-        $booking = $this->commandBus->handle($registerBookingCommand);
+        $booking = $this->commandBus->handle($registerNewBooking);
         $response = $this->serializer->serialize($booking, 'json', ['groups' => ['create-booking']]);
 
         return new JsonResponse($response, 201, [], true);

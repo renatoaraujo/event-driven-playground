@@ -100,15 +100,6 @@ class Booking
         $this->raisedEvents[] = new BookingWasCreatedEvent();
     }
 
-    public static function fromNewBookingRequest(
-        Customer $customer,
-        Room $room,
-        \DateTimeInterface $checkinDate,
-        \DateTimeInterface $checkoutDate
-    ): Booking {
-
-    }
-
     /**
      * @param \DateTimeInterface $newCheckinDate
      * @param \DateTimeInterface $newCheckoutDate
