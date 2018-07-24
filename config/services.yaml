@@ -1,0 +1,26 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Hotel\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Repository,Entity,Migrations,Tests,Kernel.php}'
+
+    Hotel\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    League\Tactician\CommandBus: '@tactician.commandbus.default'
+
+    Hotel\Repository\:
+        resource: '../src/Repository'
+        public: true
+
+    Hotel\Service\Handler\:
+        resource: '../src/Service/Handler'
+        tags:
+            - { name: tactician.handler, typehints: true }
